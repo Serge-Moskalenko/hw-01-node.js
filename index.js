@@ -5,7 +5,7 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
     switch (action) {
         case "list":
             const contacts = await contact.listContacts()
-            return console.log(contacts);
+            return console.table(contacts);
 
         case "get":
             const getById = await contact.getContactById(id);
@@ -37,3 +37,15 @@ program
 program.parse();
 const option = program.opts();
 invokeAction(option);
+
+// # Получаем и выводим весь список контактов в виде таблицы (console.table)
+// node index.js --action list
+
+// # Получаем контакт по id
+// node index.js --action get --id 5
+
+// # Добавялем контакт
+// node index.js --action add --name Mango --email mango@gmail.com --phone 322-22-22
+
+// # Удаляем контакт
+// node index.js --action remove --id=3
